@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1024">
+    <title>Office Culture CSS Art</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .scene {
+            position: relative;
+            width: 95%;
+            max-width: 900px;
+            height: 580px;
+            background: linear-gradient(to bottom, #64b5f6 40%, #f5f5f5 40%);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            margin: 20px auto;
+            transform: scale(0.85);
+            transform-origin: top center;
+        }
+
+        /* Title */
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 32px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            z-index: 10;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            margin-top: 5px;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        /* Office Building */
+        .building {
+            position: absolute;
+            bottom: 100px;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(90deg, #37474f, #263238);
+            clip-path: polygon(0 100%, 100% 100%, 100% 20%, 90% 10%, 80% 20%, 70% 0, 60% 15%, 50% 0, 40% 20%, 30% 5%, 20% 25%, 10% 0, 0 30%);
+        }
+
+        /* Windows */
+        .windows {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 6px;
+        }
+
+        .window {
+            background: #ffeb3b;
+            border-radius: 2px;
+            opacity: 0.8;
+            box-shadow: 0 0 6px rgba(255, 235, 59, 0.7);
+            animation: window-light 5s infinite;
+        }
+
+        .window:nth-child(3n) {
+            animation-delay: 1s;
+        }
+
+        .window:nth-child(4n+2) {
+            animation-delay: 2s;
+        }
+
+        /* Desk */
+        .desk {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, #5d4037, #4e342e);
+            border-top: 6px solid #3e2723;
+            z-index: 2;
+        }
+
+        /* Desk Surface */
+        .desk-surface {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            right: 0;
+            height: 170px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 40px;
+            padding: 0 10px;
+        }
+
+        /* Desktop setup */
+        .desktop-setup {
+            position: relative;
+            width: 350px;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+
+        .monitor {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 150px;
+            background: #37474f;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            z-index: 3;
+        }
+
+        .monitor-screen {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            background: #0d47a1;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .code {
+            color: white;
+            font-family: monospace;
+            font-size: 12px;
+            padding: 10px;
+            text-align: left;
+            animation: code-scroll 20s linear infinite;
+        }
+
+        .monitor-stand {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 10px;
+            background: #455a64;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .monitor-base {
+            position: absolute;
+            top: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 10px;
+            background: #263238;
+            border-radius: 3px 3px 8px 8px;
+        }
+
+        /* Mechanical Keyboard */
+        .keyboard {
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 90px;
+            background: #111;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+            gap: 4px;
+        }
+
+        .key {
+            width: 24px;
+            height: 24px;
+            background: #222;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ddd;
+            font-size: 10px;
+            position: relative;
+        }
+
+        .key.space {
+            width: 120px;
+        }
+
+        .key.enter {
+            width: 50px;
+        }
+
+        .key.shift {
+            width: 60px;
+        }
+
+        .key.tab {
+            width: 40px;
+        }
+
+        .key.caps {
+            width: 50px;
+        }
+
+        .key.backspace {
+            width: 50px;
+        }
+
+        .key.ctrl {
+            width: 35px;
+        }
+
+        .key.alt {
+            width: 35px;
+        }
+
+        .key.win {
+            width: 35px;
+        }
+
+        .key:hover {
+            background: #333;
+        }
+
+        .key.active {
+            background: #444;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
+            transform: translateY(1px);
+        }
+
+        /* Coffee mug */
+        .coffee-mug {
+            position: relative;
+            width: 40px;
+            height: 50px;
+            background: #e0e0e0;
+            border-radius: 0 0 6px 6px;
+            border: 3px solid #bdbdbd;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .coffee-mug::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -18px;
+            width: 14px;
+            height: 24px;
+            background: transparent;
+            border: 3px solid #bdbdbd;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .coffee {
+            position: absolute;
+            bottom: 3px;
+            left: 3px;
+            right: 3px;
+            height: 35px;
+            background: #5d4037;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .steam {
+            position: absolute;
+            top: -28px;
+            left: 18px;
+            width: 7px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            animation: steam 4s infinite;
+            filter: blur(2px);
+        }
+
+        .steam:nth-child(2) {
+            left: 28px;
+            animation-delay: 1s;
+        }
+
+        .steam:nth-child(3) {
+            left: 38px;
+            animation-delay: 2s;
+        }
+
+        /* Office plant */
+        .plant {
+            position: relative;
+            width: 60px;
+            height: 80px;
+            z-index: 3;
+        }
+
+        .plant-pot {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 30px;
+            background: #8d6e63;
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .plant-stem {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 50px;
+            background: #4CAF50;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 28px;
+            background: #388E3C;
+            border-radius: 50% 0 50% 50%;
+            animation: leaf-move 8s infinite;
+        }
+
+        .leaf-1 { bottom: 60px; left: 10px; transform: rotate(-30deg); }
+        .leaf-2 { bottom: 50px; left: 16px; transform: rotate(20deg); }
+        .leaf-3 { bottom: 35px; left: 6px; transform: rotate(-15deg); }
+        .leaf-4 { bottom: 40px; right: 10px; transform: rotate(40deg); }
+        .leaf-5 { bottom: 30px; right: 16px; transform: rotate(-25deg); }
+
+        /* Sticky notes */
+        .sticky-notes {
+            position: absolute;
+            top: 80px;
+            left: 40px;
+            width: 240px;
+            height: 150px;
+            transform: rotate(-3deg);
+            z-index: 4;
+        }
+
+        .sticky-note {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: #fff9c4;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 6px;
+            font-size: 10px;
+            line-height: 1.2;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-note:hover {
+            transform: scale(1.1) rotate(3deg);
+            z-index: 10;
+        }
+
+        .sticky-note::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-width: 0 11px 11px 0;
+            border-style: solid;
+        }
+
+        .sticky-1 {
+            top: 0;
+            left: 0;
+            transform: rotate(-5deg);
+            background: #ffcdd2;
+        }
+
+        .sticky-1::after {
+            border-color: transparent #e57373 transparent transparent;
+        }
+
+        .sticky-2 {
+            top: 30px;
+            left: 38px;
+            transform: rotate(3deg);
+            background: #c8e6c9;
+        }
+
+        .sticky-2::after {
+            border-color: transparent #81c784 transparent transparent;
+        }
+
+        .sticky-3 {
+            top: 6px;
+            left: 75px;
+            transform: rotate(-2deg);
+            background: #bbdefb;
+        }
+
+        .sticky-3::after {
+            border-color: transparent #64b5f6 transparent transparent;
+        }
+
+        .sticky-4 {
+            top: 60px;
+            left: 15px;
+            transform: rotate(5deg);
+            background: #fff59d;
+        }
+
+        .sticky-4::after {
+            border-color: transparent #ffd54f transparent transparent;
+        }
+
+        .note-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+            padding-bottom: 2px;
+            font-size: 11px;
+        }
+
+        /* Calendar */
+        .calendar {
+            position: absolute;
+            top: 80px;
+            right: 400px;
+            width: 110px;
+            height: 130px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform: rotate(2deg);
+            z-index: 4;
+        }
+
+        .calendar-header {
+            height: 24px;
+            background: #f44336;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            padding: 3px;
+        }
+
+        .calendar-cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 15px;
+            font-size: 10px;
+        }
+
+        .calendar-cell.day {
+            font-weight: bold;
+            color: #f44336;
+        }
+
+        .calendar-cell.today {
+            background: #f44336;
+            color: white;
+            border-radius: 50%;
+        }
+
+        /* Enhanced Water Dispenser */
+        .water-cooler-area {
+            position: absolute;
+            bottom: 180px;
+            right: 50px;
+            width: 200px;
+            height: 220px;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .water-dispenser {
+            position: relative;
+            width: 70px;
+            height: 180px;
+            margin-bottom: 10px;
+        }
+
+        .dispenser-top {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 50px;
+            height: 80px;
+            background: #e0f7fa;
+            border-radius: 10px 10px 0 0;
+            border: 3px solid #b2ebf2;
+        }
+
+        .water-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: #29b6f6;
+            border-radius: 0 0 7px 7px;
+            animation: water-sway 8s infinite;
+        }
+
+        .dispenser-body {
+            position: absolute;
+            top: 80px;
+            left: 15px;
+            width: 40px;
+            height: 70px;
+            background: #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .dispenser-base {
+            position: absolute;
+            top: 150px;
+            left: 5px;
+            width: 60px;
+            height: 30px;
+            background: #bdbdbd;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dispenser-tap {
+            position: absolute;
+            top: 90px;
+            right: -15px;
+            width: 30px;
+            height: 15px;
+            background: #9e9e9e;
+            border-radius: 5px 0 0 5px;
+            transform-origin: left center;
+            animation: tap-lever 5s infinite;
+        }
+
+        .tap-handle {
+            position: absolute;
+            top: 4px;
+            right: -10px;
+            width: 10px;
+            height: 7px;
+            background: #ff9800;
+            border-radius: 2px;
+        }
+
+        .water-drip {
+            position: absolute;
+            top: 105px;
+            right: -10px;
+            width: 4px;
+            height: 8px;
+            background: #29b6f6;
+            border-radius: 0 0 2px 2px;
+            animation: drip 3s infinite;
+            opacity: 0;
+        }
+
+        .water-drip:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .water-drip:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+
+        /* People at water cooler holding cups */
+        .people {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .person {
+            position: relative;
+            width: 40px;
+            height: 80px;
+        }
+
+        .person-head {
+            position: relative;
+            width: 25px;
+            height: 25px;
+            background: #ffccbc;
+            border-radius: 50%;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        /* Hair styles */
+        .hair {
+            position: absolute;
+            background: #333;
+            border-radius: 50%;
+        }
+        
+        .person-1 .hair {
+            top: -5px;
+            left: 0;
+            width: 25px;
+            height: 15px;
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .person-2 .hair {
+            top: -3px;
+            left: 2px;
+            width: 20px;
+            height: 10px;
+        }
+        
+        .person-3 .hair {
+            top: -4px;
+            left: 5px;
+            width: 15px;
+            height: 8px;
+            transform: rotate(20deg);
+        }
+
+        .person-body {
+            position: absolute;
+            top: 20px;
+            left: 3px;
+            width: 28px;
+            height: 35px;
+            background: #2196F3;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .person-2 .person-body {
+            background: #4CAF50;
+        }
+        
+        .person-3 .person-body {
+            background: #FF9800;
+        }
+
+        .person-arm {
+            position: absolute;
+            width: 8px;
+            height: 25px;
+            background: #2196F3;
+            border-radius: 3px;
+            top: 25px;
+        }
+
+        .person-arm.left {
+            left: -4px;
+            transform: rotate(30deg);
+            animation: arm-wave 3s infinite;
+        }
+
+        .person-arm.right {
+            right: -4px;
+            transform: rotate(-30deg);
+        }
+
+        .person-2 .person-arm {
+            background: #4CAF50;
+        }
+        
+        .person-3 .person-arm {
+            background: #FF9800;
+        }
+        
+        /* Legs */
+        .person-legs {
+            position: absolute;
+            top: 55px;
+            left: 8px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .leg {
+            width: 6px;
+            height: 25px;
+            background: #1565C0;
+            border-radius: 2px;
+        }
+        
+        .person-2 .leg {
+            background: #2E7D32;
+        }
+        
+        .person-3 .leg {
+            background: #EF6C00;
+        }
+        
+        /* Cup in hand */
+        .person-cup {
+            position: absolute;
+            width: 12px;
+            height: 15px;
+            background: #e0e0e0;
+            border-radius: 0 0 3px 3px;
+            z-index: 4;
+        }
+        
+        .person-1 .person-cup {
+            top: 35px;
+            right: -10px;
+            transform: rotate(15deg);
+        }
+        
+        .person-2 .person-cup {
+            top: 30px;
+            right: -8px;
+            transform: rotate(-10deg);
+        }
+        
+        .person-3 .person-cup {
+            top: 32px;
+            right: -12px;
+            transform: rotate(5deg);
+        }
+
+        /* Chat bubbles */
+        .chat-bubble {
+            position: absolute;
+            width: 100px;
+            background: white;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            padding: 6px 10px;
+            text-align: center;
+            line-height: 1.2;
+            z-index: 20;
+        }
+
+        .chat-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+
+        .chat-1 {
+            top: -50px;
+            left: -35px;
+            animation: chat-appear 8s 0s infinite;
+        }
+
+        .chat-1::after {
+            left: 20px;
+        }
+
+        .chat-2 {
+            top: -50px;
+            right: -35px;
+            animation: chat-appear 8s 2s infinite;
+        }
+
+        .chat-2::after {
+            right: 20px;
+        }
+
+        .chat-3 {
+            top: -50px;
+            left: -35px;
+            animation: chat-appear 8s 4s infinite;
+        }
+
+        .chat-3::after {
+            left: 20px;
+        }
+
+        .chat-4 {
+            top: -50px;
+            right: -35px;
+            animation: chat-appear 8s 6s infinite;
+        }
+
+        .chat-4::after {
+            right: 20px;
+        }
+
+        /* Desk accessories - Books, Papers, Pen */
+        .desk-accessories {
+            position: absolute;
+            bottom: 20px;
+            left: 60px;
+            display: flex;
+            gap: 15px;
+            z-index: 3;
+        }
+
+        .books {
+            position: relative;
+            width: 60px;
+            height: 50px;
+        }
+
+        .book {
+            position: absolute;
+            height: 40px;
+            border-radius: 3px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            padding: 3px;
+            transform-origin: left bottom;
+        }
+
+        .book-1 {
+            width: 35px;
+            background: #f44336;
+            bottom: 0;
+            left: 0;
+            transform: rotate(-5deg);
+            z-index: 3;
+        }
+
+        .book-2 {
+            width: 40px;
+            background: #2196F3;
+            bottom: 0;
+            left: 15px;
+            transform: rotate(3deg);
+            z-index: 2;
+        }
+
+        .book-3 {
+            width: 45px;
+            background: #4CAF50;
+            bottom: 0;
+            left: 30px;
+            z-index: 1;
+        }
+
+        .papers {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .paper {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            padding: 5px;
+            text-align: center;
+            transform-origin: center;
+        }
+
+        .paper-1 {
+            top: 0;
+            left: 0;
+            transform: rotate(-5deg);
+            z-index: 3;
+        }
+
+        .paper-2 {
+            top: 5px;
+            left: 5px;
+            transform: rotate(3deg);
+            z-index: 2;
+        }
+
+        .paper-3 {
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+        }
+
+        .pen {
+            position: absolute;
+            top: 20px;
+            left: 120px;
+            width: 30px;
+            height: 5px;
+            background: #FF9800;
+            border-radius: 2px;
+            transform: rotate(30deg);
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            z-index: 4;
+        }
+
+        .pen::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -1px;
+            width: 10px;
+            height: 7px;
+            background: #FF5722;
+            border-radius: 0 2px 2px 0;
+            clip-path: polygon(0 0, 100% 50%, 0 100%, 0 0);
+        }
+
+        /* Animations */
+        @keyframes steam {
+            0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
+            100% { transform: translateY(-35px) scale(1.5); opacity: 0; }
+        }
+
+        @keyframes leaf-move {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @keyframes window-light {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes code-scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-70%); }
+        }
+
+        @keyframes arm-wave {
+            0%, 100% { transform: rotate(30deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes chat-appear {
+            0%, 5% { opacity: 0; transform: translateY(8px); }
+            10%, 20% { opacity: 1; transform: translateY(0); }
+            25%, 100% { opacity: 0; }
+        }
+
+        @keyframes key-press {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(2px); }
+        }
+
+        @keyframes water-sway {
+            0%, 100% { transform: skewX(0deg); }
+            25% { transform: skewX(2deg); }
+            75% { transform: skewX(-2deg); }
+        }
+
+        @keyframes tap-lever {
+            0%, 70% { transform: rotate(0deg); }
+            75%, 85% { transform: rotate(-20deg); }
+            90%, 100% { transform: rotate(0deg); }
+        }
+
+        @keyframes drip {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(50px); opacity: 0; }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .scene {
+                height: 500px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .desk-surface {
+                gap: 20px;
+                justify-content: space-around;
+            }
+            
+            .desktop-setup {
+                width: 300px;
+                transform: scale(0.9);
+                transform-origin: bottom;
+            }
+            
+            .water-cooler-area {
+                right: 30px;
+                bottom: 170px;
+                transform: scale(0.9);
+            }
+            
+            .sticky-notes {
+                left: 20px;
+                transform: rotate(-3deg) scale(0.85);
+            }
+            
+            .calendar {
+                right: 30px;
+                transform: rotate(2deg) scale(0.85);
+            }
+            
+            .keyboard {
+                width: 270px;
+            }
+            
+            .key {
+                width: 20px;
+                height: 20px;
+                font-size: 8px;
+            }
+            
+            .key.space {
+                width: 100px;
+            }
+            
+            .key.enter, .key.backspace {
+                width: 40px;
+            }
+            
+            .key.shift {
+                width: 50px;
+            }
+            
+            .key.tab, .key.caps {
+                width: 35px;
+            }
+            
+            .key.ctrl, .key.alt, .key.win {
+                width: 30px;
+            }
+            
+            /* Reposition desk accessories for tablet view */
+            .desk-accessories {
+                bottom: 100px;
+                left: 20px;
+                transform: scale(0.8);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scene {
+                height: 550px; /* Increase height for mobile */
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .desktop-setup {
+                width: 250px;
+                transform: scale(0.8);
+            }
+            
+            .monitor {
+                width: 220px;
+                height: 130px;
+            }
+            
+            .monitor-screen {
+                font-size: 10px;
+            }
+            
+            .water-cooler-area {
+                right: 10px;
+                bottom: 140px;
+                transform: scale(0.7);
+            }
+            
+            .sticky-notes {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                top: 60px;
+                left: 20px;
+                width: 150px;
+                height: auto;
+                transform: none;
+            }
+            
+            .sticky-note {
+                position: relative;
+                width: 60px;
+                height: 60px;
+                transform: rotate(0) !important;
+                margin: 0;
+            }
+            
+            .calendar {
+                display: block;
+                top: 60px;
+                right: 20px;
+                transform: scale(0.8);
+            }
+            
+            .desk-accessories {
+                display: flex;
+                bottom: 100px;
+                left: 10px;
+                transform: scale(0.7);
+                gap: 10px;
+            }
+            
+            .keyboard {
+                width: 240px;
+                padding: 8px;
+                gap: 3px;
+            }
+            
+            .key {
+                width: 16px;
+                height: 16px;
+                font-size: 7px;
+            }
+            
+            .key.space {
+                width: 80px;
+            }
+            
+            .key.enter, .key.backspace {
+                width: 30px;
+            }
+            
+            .key.shift {
+                width: 40px;
+            }
+            
+            .key.tab, .key.caps {
+                width: 30px;
+            }
+            
+            .key.ctrl, .key.alt, .key.win {
+                width: 25px;
+            }
+            
+            .building {
+                height: 150px;
+            }
+            
+            .windows {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                gap: 4px;
+            }
+            
+            /* Adjust people positioning */
+            .people {
+                gap: 10px;
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="title">Office Culture<div class="subtitle"></div></div>
+        
+        <div class="building">
+            <div class="windows">
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+            </div>
+        </div>
+        
+        <div class="desk">
+            <div class="desk-surface">
+                <div class="desktop-setup">
+                    <div class="monitor">
+                        <div class="monitor-screen">
+                            <div class="code">
+                                function developSolution() {<br>
+                                &nbsp;&nbsp;const creativity = 100;<br>
+                                &nbsp;&nbsp;let coffeeLevel = 90;<br>
+                                &nbsp;&nbsp;while (coffeeLevel > 0) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;writeCode();<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;debug();<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;coffeeLevel -= 10;<br>
+                                &nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;return "Success!";<br>
+                                }<br><br>
+                                // Team collaboration is key<br>
+                                const teamwork = {<br>
+                                &nbsp;&nbsp;communication: "open",<br>
+                                &nbsp;&nbsp;meetings: "productive",<br>
+                                &nbsp;&nbsp;synergy: true<br>
+                                };<br><br>
+                                // Celebrate milestones<br>
+                                function launchProject() {<br>
+                                &nbsp;&nbsp;throw new Party("Hooray!");<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="monitor-stand"></div>
+                    <div class="monitor-base"></div>
+                    
+                    <div class="keyboard">
+                        <div class="key">Esc</div>
+                        <div class="key">F1</div>
+                        <div class="key">F2</div>
+                        <div class="key">F3</div>
+                        <div class="key">F4</div>
+                        <div class="key">F5</div>
+                        <div class="key">F6</div>
+                        <div class="key">F7</div>
+                        <div class="key">F8</div>
+                        <div class="key">F9</div>
+                        <div class="key">F10</div>
+                        <div class="key">F11</div>
+                        <div class="key">F12</div>
+                        
+                        <div class="key">~</div>
+                        <div class="key">1</div>
+                        <div class="key">2</div>
+                        <div class="key">3</div>
+                        <div class="key">4</div>
+                        <div class="key">5</div>
+                        <div class="key">6</div>
+                        <div class="key">7</div>
+                        <div class="key">8</div>
+                        <div class="key">9</div>
+                        <div class="key">0</div>
+                        <div class="key">-</div>
+                        <div class="key">+</div>
+                        <div class="key backspace">Back</div>
+                        
+                        <div class="key tab">Tab</div>
+                        <div class="key">Q</div>
+                        <div class="key">W</div>
+                        <div class="key">E</div>
+                        <div class="key">R</div>
+                        <div class="key">T</div>
+                        <div class="key">Y</div>
+                        <div class="key">U</div>
+                        <div class="key">I</div>
+                        <div class="key">O</div>
+                        <div class="key">P</div>
+                        <div class="key">[</div>
+                        <div class="key">]</div>
+                        <div class="key">\</div>
+                        
+                        <div class="key caps">Caps</div>
+                        <div class="key">A</div>
+                        <div class="key">S</div>
+                        <div class="key">D</div>
+                        <div class="key">F</div>
+                        <div class="key">G</div>
+                        <div class="key">H</div>
+                        <div class="key">J</div>
+                        <div class="key">K</div>
+                        <div class="key">L</div>
+                        <div class="key">;</div>
+                        <div class="key">'</div>
+                        <div class="key enter">Enter</div>
+                        
+                        <div class="key shift">Shift</div>
+                        <div class="key">Z</div>
+                        <div class="key">X</div>
+                        <div class="key">C</div>
+                        <div class="key">V</div>
+                        <div class="key">B</div>
+                        <div class="key">N</div>
+                        <div class="key">M</div>
+                        <div class="key">,</div>
+                        <div class="key">.</div>
+                        <div class="key">/</div>
+                        <div class="key shift">Shift</div>
+                        
+                        <div class="key ctrl">Ctrl</div>
+                        <div class="key win">Win</div>
+                        <div class="key alt">Alt</div>
+                        <div class="key space">Space</div>
+                        <div class="key alt">Alt</div>
+                        <div class="key win">Win</div>
+                        <div class="key">☰</div>
+                        <div class="key ctrl">Ctrl</div>
+                    </div>
+                </div>
+                
+                <div class="coffee-mug">
+                    <div class="coffee"></div>
+                    <div class="steam"></div>
+                    <div class="steam"></div>
+                    <div class="steam"></div>
+                </div>
+                
+                <div class="plant">
+                    <div class="plant-pot"></div>
+                    <div class="plant-stem"></div>
+                    <div class="leaf leaf-1"></div>
+                    <div class="leaf leaf-2"></div>
+                    <div class="leaf leaf-3"></div>
+                    <div class="leaf leaf-4"></div>
+                    <div class="leaf leaf-5"></div>
+                </div>
+            </div>
+            
+            <!-- Desk accessories -->
+            <div class="desk-accessories">
+                <div class="books">
+                    <div class="book book-1">CSS<br>Mastery</div>
+                    <div class="book book-2">JS<br>Essentials</div>
+                    <div class="book book-3">Web<br>Design</div>
+                </div>
+                
+                <div class="papers">
+                    <div class="paper paper-1">Project<br>Notes</div>
+                    <div class="paper paper-2">Meeting<br>Notes</div>
+                    <div class="paper paper-3">To-Do<br>List</div>
+                </div>
+                
+                <div class="pen"></div>
+            </div>
+        </div>
+        
+        <div class="sticky-notes">
+            <div class="sticky-note sticky-1">
+                <div class="note-title">Meeting</div>
+                <div>10:30 AM<br>Conf Room</div>
+            </div>
+            <div class="sticky-note sticky-2">
+                <div class="note-title">Deadline</div>
+                <div>Project Alpha<br>Friday EOD</div>
+            </div>
+            <div class="sticky-note sticky-3">
+                <div class="note-title">Ideas</div>
+                <div>Brainstorm<br>New features</div>
+            </div>
+            <div class="sticky-note sticky-4">
+                <div class="note-title">Reminder</div>
+                <div>Team Lunch<br>Tomorrow</div>
+            </div>
+        </div>
+        
+        <div class="calendar">
+            <div class="calendar-header">July 2023</div>
+            <div class="calendar-grid">
+                <div class="calendar-cell day">S</div>
+                <div class="calendar-cell day">M</div>
+                <div class="calendar-cell day">T</div>
+                <div class="calendar-cell day">W</div>
+                <div class="calendar-cell day">T</div>
+                <div class="calendar-cell day">F</div>
+                <div class="calendar-cell day">S</div>
+                
+                <div class="calendar-cell"></div>
+                <div class="calendar-cell"></div>
+                <div class="calendar-cell"></div>
+                <div class="calendar-cell"></div>
+                <div class="calendar-cell"></div>
+                <div class="calendar-cell"></div>
+                <div class="calendar-cell">1</div>
+                
+                <div class="calendar-cell">2</div>
+                <div class="calendar-cell">3</div>
+                <div class="calendar-cell">4</div>
+                <div class="calendar-cell">5</div>
+                <div class="calendar-cell">6</div>
+                <div class="calendar-cell">7</div>
+                <div class="calendar-cell">8</div>
+                
+                <div class="calendar-cell">9</div>
+                <div class="calendar-cell">10</div>
+                <div class="calendar-cell">11</div>
+                <div class="calendar-cell">12</div>
+                <div class="calendar-cell">13</div>
+                <div class="calendar-cell">14</div>
+                <div class="calendar-cell">15</div>
+                
+                <div class="calendar-cell">16</div>
+                <div class="calendar-cell">17</div>
+                <div class="calendar-cell">18</div>
+                <div class="calendar-cell">19</div>
+                <div class="calendar-cell">20</div>
+                <div class="calendar-cell today">21</div>
+                <div class="calendar-cell">22</div>
+            </div>
+        </div>
+        
+        <!-- Water Cooler Area with People -->
+        <div class="water-cooler-area">
+            <div class="water-cooler-sign">
+            </div>
+            
+            <div class="water-dispenser">
+                <div class="dispenser-top">
+                    <div class="water-level"></div>
+                </div>
+                <div class="dispenser-body"></div>
+                <div class="dispenser-base"></div>
+                <div class="dispenser-tap">
+                    <div class="tap-handle"></div>
+                </div>
+                <div class="water-drip"></div>
+                <div class="water-drip"></div>
+                <div class="water-drip"></div>
+            </div>
+            
+            <div class="people">
+                <div class="person person-1">
+                    <div class="hair"></div>
+                    <div class="person-head"></div>
+                    <div class="person-body"></div>
+                    <div class="person-arm left"></div>
+                    <div class="person-arm right"></div>
+                    <div class="person-legs">
+                        <div class="leg"></div>
+                        <div class="leg"></div>
+                    </div>
+                    <div class="person-cup"></div>
+                    <div class="chat-bubble chat-1">How's the project going?</div>
+                    <div class="chat-bubble chat-3">Deadline is stressing me too!</div>
+                </div>
+                <div class="person person-2">
+                    <div class="hair"></div>
+                    <div class="person-head"></div>
+                    <div class="person-body"></div>
+                    <div class="person-arm left"></div>
+                    <div class="person-arm right"></div>
+                    <div class="person-legs">
+                        <div class="leg"></div>
+                        <div class="leg"></div>
+                    </div>
+                    <div class="person-cup"></div>
+                    <div class="chat-bubble chat-2">Progress is good, deadline tight</div>
+                    <div class="chat-bubble chat-4">Coffee after this meeting?</div>
+                </div>
+                <div class="person person-3">
+                    <div class="hair"></div>
+                    <div class="person-head"></div>
+                    <div class="person-body"></div>
+                    <div class="person-arm left"></div>
+                    <div class="person-arm right"></div>
+                    <div class="person-legs">
+                        <div class="leg"></div>
+                        <div class="leg"></div>
+                    </div>
+                    <div class="person-cup"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate random keys on the keyboard
+        const keys = document.querySelectorAll('.key');
+        setInterval(() => {
+            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            randomKey.classList.add('active');
+            setTimeout(() => {
+                randomKey.classList.remove('active');
+            }, 100);
+        }, 50);
+    </script>
+</body>
+</html>
